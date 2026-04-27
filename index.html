@@ -1,1186 +1,1609 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VetOnTheLeft</title>
-  <meta name="description" content="A veteran's perspective from the left — politics, policy, justice, and the fight for a country worth fighting for." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --dark:        #0D0D09;
-      --dark2:       #171710;
-      --olive:       #4A5228;
-      --olive-mid:   #5C6A32;
-      --olive-light: #798C40;
-      --gold:        #C9A535;
-      --gold-light:  #DEB94E;
-      --grey:        #6E6E5E;
-      --grey-light:  #A4A48E;
-      --cream:       #E8E6D6;
-      --white:       #F4F2E8;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VetOnTheLeft</title>
+    <meta
+      name="description"
+      content="A veteran's perspective from the left — politics, policy, justice, and the fight for a country worth fighting for."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --dark: #0d0d09;
+        --dark2: #171710;
+        --olive: #4a5228;
+        --olive-mid: #5c6a32;
+        --olive-light: #798c40;
+        --gold: #c9a535;
+        --gold-light: #deb94e;
+        --grey: #6e6e5e;
+        --grey-light: #a4a48e;
+        --cream: #e8e6d6;
+        --white: #f4f2e8;
+      }
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    html { scroll-behavior: smooth; }
+      html {
+        scroll-behavior: smooth;
+      }
 
-    body {
-      background: var(--dark);
-      color: var(--cream);
-      font-family: 'Libre Baskerville', Georgia, serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+      body {
+        background: var(--dark);
+        color: var(--cream);
+        font-family: 'Libre Baskerville', Georgia, serif;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
 
-    /* Grain texture */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.6;
-    }
+      /* Grain texture */
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.6;
+      }
 
-    /* ══════════════════════════════
+      /* ══════════════════════════════
        HEADER / NAV
     ══════════════════════════════ */
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 500;
-      background: var(--dark);
-      border-bottom: 3px solid var(--gold);
-    }
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 500;
+        background: var(--dark);
+        border-bottom: 3px solid var(--gold);
+      }
 
-    .header-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 68px;
-    }
+      .header-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+      }
 
-    /* Logo */
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      cursor: pointer;
-    }
+      /* Logo */
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-decoration: none;
+        cursor: pointer;
+      }
 
-    .logo-chevrons {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .logo-chevrons span {
-      display: block;
-      height: 4px;
-      background: var(--gold);
-    }
-    .logo-chevrons span:nth-child(1) { width: 20px; }
-    .logo-chevrons span:nth-child(2) { width: 26px; }
-    .logo-chevrons span:nth-child(3) { width: 32px; }
+      .logo-chevrons {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .logo-chevrons span {
+        display: block;
+        height: 4px;
+        background: var(--gold);
+      }
+      .logo-chevrons span:nth-child(1) {
+        width: 20px;
+      }
+      .logo-chevrons span:nth-child(2) {
+        width: 26px;
+      }
+      .logo-chevrons span:nth-child(3) {
+        width: 32px;
+      }
 
-    .logo-text {
-      font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: 1.45rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--white);
-    }
-    .logo-text em { color: var(--gold); font-style: normal; }
+      .logo-text {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: 1.45rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--white);
+      }
+      .logo-text em {
+        color: var(--gold);
+        font-style: normal;
+      }
 
-    /* Nav buttons */
-    nav { display: flex; gap: 0; }
-    nav button {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      background: none;
-      border: none;
-      color: var(--grey-light);
-      padding: 0 1.2rem;
-      height: 68px;
-      cursor: pointer;
-      border-bottom: 3px solid transparent;
-      margin-bottom: -3px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    nav button:hover  { color: var(--cream); }
-    nav button.active { color: var(--gold); border-bottom-color: var(--gold); }
+      /* Nav buttons */
+      nav {
+        display: flex;
+        gap: 0;
+      }
+      nav button {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        background: none;
+        border: none;
+        color: var(--grey-light);
+        padding: 0 1.2rem;
+        height: 68px;
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+        margin-bottom: -3px;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      nav button:hover {
+        color: var(--cream);
+      }
+      nav button.active {
+        color: var(--gold);
+        border-bottom-color: var(--gold);
+      }
 
-    /* Hamburger (mobile) */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--cream);
-      transition: background 0.2s;
-    }
+      /* Hamburger (mobile) */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+      }
+      .hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--cream);
+        transition: background 0.2s;
+      }
 
-    .mobile-nav {
-      display: none;
-      flex-direction: column;
-      background: var(--dark2);
-      border-bottom: 2px solid var(--gold);
-    }
-    .mobile-nav button {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      background: none;
-      border: none;
-      color: var(--grey-light);
-      padding: 1rem 2rem;
-      text-align: left;
-      cursor: pointer;
-      border-left: 3px solid transparent;
-      transition: color 0.2s, border-color 0.2s, background 0.2s;
-    }
-    .mobile-nav button.active,
-    .mobile-nav button:hover {
-      color: var(--gold);
-      border-left-color: var(--gold);
-      background: rgba(201,165,53,0.05);
-    }
-    .mobile-nav.open { display: flex; }
+      .mobile-nav {
+        display: none;
+        flex-direction: column;
+        background: var(--dark2);
+        border-bottom: 2px solid var(--gold);
+      }
+      .mobile-nav button {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        background: none;
+        border: none;
+        color: var(--grey-light);
+        padding: 1rem 2rem;
+        text-align: left;
+        cursor: pointer;
+        border-left: 3px solid transparent;
+        transition:
+          color 0.2s,
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .mobile-nav button.active,
+      .mobile-nav button:hover {
+        color: var(--gold);
+        border-left-color: var(--gold);
+        background: rgba(201, 165, 53, 0.05);
+      }
+      .mobile-nav.open {
+        display: flex;
+      }
 
-    /* ══════════════════════════════
+      /* ══════════════════════════════
        PAGES
     ══════════════════════════════ */
-    main { padding-top: 68px; min-height: 100vh; }
+      main {
+        padding-top: 68px;
+        min-height: 100vh;
+      }
 
-    .page { display: none; animation: pageFade 0.35s ease; }
-    .page.active { display: block; }
+      .page {
+        display: none;
+        animation: pageFade 0.35s ease;
+      }
+      .page.active {
+        display: block;
+      }
 
-    @keyframes pageFade {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+      @keyframes pageFade {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
-    /* ══════════════════════════════
+      /* ══════════════════════════════
        HOME
     ══════════════════════════════ */
-    .hero {
-      min-height: calc(100vh - 68px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 4rem 2rem 3rem;
-      position: relative;
-      overflow: hidden;
-    }
+      .hero {
+        min-height: calc(100vh - 68px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 4rem 2rem 3rem;
+        position: relative;
+        overflow: hidden;
+      }
 
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(125deg, rgba(74,82,40,0.45) 0%, transparent 55%),
-        radial-gradient(ellipse at 85% 40%, rgba(201,165,53,0.07) 0%, transparent 55%);
-    }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(125deg, rgba(74, 82, 40, 0.45) 0%, transparent 55%),
+          radial-gradient(
+            ellipse at 85% 40%,
+            rgba(201, 165, 53, 0.07) 0%,
+            transparent 55%
+          );
+      }
 
-    /* diagonal hatch lines */
-    .hero-bg::before {
-      content: '';
-      position: absolute;
-      top: -50%; right: -5%;
-      width: 55%; height: 200%;
-      background: repeating-linear-gradient(
-        -48deg,
-        transparent, transparent 18px,
-        rgba(201,165,53,0.035) 18px, rgba(201,165,53,0.035) 20px
-      );
-    }
+      /* diagonal hatch lines */
+      .hero-bg::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -5%;
+        width: 55%;
+        height: 200%;
+        background: repeating-linear-gradient(
+          -48deg,
+          transparent,
+          transparent 18px,
+          rgba(201, 165, 53, 0.035) 18px,
+          rgba(201, 165, 53, 0.035) 20px
+        );
+      }
 
-    .hero-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 360px;
-      gap: 4rem;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
+      .hero-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 360px;
+        gap: 4rem;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
 
-    .eyebrow {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold);
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
-    .eyebrow::before {
-      content: '';
-      display: block;
-      width: 36px; height: 2px;
-      background: var(--gold);
-    }
+      .eyebrow {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--gold);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+      }
+      .eyebrow::before {
+        content: '';
+        display: block;
+        width: 36px;
+        height: 2px;
+        background: var(--gold);
+      }
 
-    .hero-title {
-      font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: clamp(3.8rem, 9vw, 7rem);
-      line-height: 0.88;
-      text-transform: uppercase;
-      margin-bottom: 1.75rem;
-    }
-    .hero-title .t1 { display: block; color: var(--white); }
-    .hero-title .t2 {
-      display: block;
-      color: transparent;
-      -webkit-text-stroke: 2.5px var(--gold);
-    }
-    .hero-title .t3 {
-      display: block;
-      color: var(--olive-light);
-      font-size: 0.5em;
-      letter-spacing: 0.12em;
-      margin-top: 0.4em;
-      -webkit-text-stroke: 0;
-    }
+      .hero-title {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: clamp(3.8rem, 9vw, 7rem);
+        line-height: 0.88;
+        text-transform: uppercase;
+        margin-bottom: 1.75rem;
+      }
+      .hero-title .t1 {
+        display: block;
+        color: var(--white);
+      }
+      .hero-title .t2 {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 2.5px var(--gold);
+      }
+      .hero-title .t3 {
+        display: block;
+        color: var(--olive-light);
+        font-size: 0.5em;
+        letter-spacing: 0.12em;
+        margin-top: 0.4em;
+        -webkit-text-stroke: 0;
+      }
 
-    .hero-bio {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--grey-light);
-      max-width: 540px;
-      margin-bottom: 2.25rem;
-    }
-    .hero-bio strong { color: var(--cream); }
+      .hero-bio {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: var(--grey-light);
+        max-width: 540px;
+        margin-bottom: 2.25rem;
+      }
+      .hero-bio strong {
+        color: var(--cream);
+      }
 
-    .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+      .cta-row {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
 
-    .btn {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.85rem 2rem;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: transform 0.15s, background 0.2s, color 0.2s, border-color 0.2s;
-      border: none;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-gold {
-      background: var(--gold);
-      color: var(--dark);
-      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-    }
-    .btn-gold:hover { background: var(--gold-light); }
-    .btn-outline {
-      background: transparent;
-      color: var(--cream);
-      border: 2px solid var(--olive-light);
-    }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+      .btn {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 0.85rem 2rem;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition:
+          transform 0.15s,
+          background 0.2s,
+          color 0.2s,
+          border-color 0.2s;
+        border: none;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+      .btn-gold {
+        background: var(--gold);
+        color: var(--dark);
+        clip-path: polygon(
+          0 0,
+          calc(100% - 10px) 0,
+          100% 10px,
+          100% 100%,
+          10px 100%,
+          0 calc(100% - 10px)
+        );
+      }
+      .btn-gold:hover {
+        background: var(--gold-light);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--cream);
+        border: 2px solid var(--olive-light);
+      }
+      .btn-outline:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
 
-    /* Photo panel */
-    .hero-photo { position: relative; }
+      /* Photo panel */
+      .hero-photo {
+        position: relative;
+      }
 
-    .photo-frame {
-      width: 100%;
-      aspect-ratio: 3/4;
-      background: linear-gradient(160deg, var(--olive) 0%, var(--olive-mid) 100%);
-      position: relative;
-      overflow: hidden;
-    }
+      .photo-frame {
+        width: 100%;
+        aspect-ratio: 3/4;
+        background: linear-gradient(
+          160deg,
+          var(--olive) 0%,
+          var(--olive-mid) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
 
-    /* corner triangle */
-    .photo-frame::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      border-style: solid;
-      border-width: 0 56px 56px 0;
-      border-color: transparent var(--gold) transparent transparent;
-      z-index: 2;
-    }
+      /* corner triangle */
+      .photo-frame::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-style: solid;
+        border-width: 0 56px 56px 0;
+        border-color: transparent var(--gold) transparent transparent;
+        z-index: 2;
+      }
 
-    .photo-placeholder {
-      width: 100%; height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      color: var(--olive-light);
-    }
-    .photo-placeholder svg { width: 72px; height: 72px; opacity: 0.6; }
-    .photo-placeholder p {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      opacity: 0.5;
-    }
+      .photo-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        color: var(--olive-light);
+      }
+      .photo-placeholder svg {
+        width: 72px;
+        height: 72px;
+        opacity: 0.6;
+      }
+      .photo-placeholder p {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.68rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        opacity: 0.5;
+      }
 
-    .photo-nameplate {
-      background: var(--dark);
-      border-top: 3px solid var(--gold);
-      padding: 0.8rem 1.25rem;
-    }
-    .photo-nameplate p {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
+      .photo-nameplate {
+        background: var(--dark);
+        border-top: 3px solid var(--gold);
+        padding: 0.8rem 1.25rem;
+      }
+      .photo-nameplate p {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
 
-    /* Stats bar */
-    .stats-bar {
-      background: var(--olive);
-      border-top: 2px solid var(--gold);
-      border-bottom: 2px solid rgba(201,165,53,0.25);
-    }
-    .stats-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-    .stat {
-      padding: 1.4rem 1rem;
-      text-align: center;
-      border-right: 1px solid rgba(255,255,255,0.1);
-    }
-    .stat:last-child { border-right: none; }
-    .stat-val {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.9rem;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1;
-    }
-    .stat-lbl {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--cream);
-      margin-top: 0.2rem;
-      opacity: 0.7;
-    }
+      /* Stats bar */
+      .stats-bar {
+        background: var(--olive);
+        border-top: 2px solid var(--gold);
+        border-bottom: 2px solid rgba(201, 165, 53, 0.25);
+      }
+      .stats-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .stat {
+        padding: 1.4rem 1rem;
+        text-align: center;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .stat:last-child {
+        border-right: none;
+      }
+      .stat-val {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .stat-lbl {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.62rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--cream);
+        margin-top: 0.2rem;
+        opacity: 0.7;
+      }
 
-    /* About section */
-    .about-section {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
-    }
-    .section-eyebrow {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.75rem;
-    }
-    .section-heading {
-      font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      color: var(--white);
-      margin-bottom: 1.5rem;
-      line-height: 1.05;
-    }
-    .section-heading em { color: var(--gold); font-style: normal; }
-    .body-text {
-      font-size: 1rem;
-      line-height: 1.85;
-      color: var(--grey-light);
-      max-width: 700px;
-      margin-bottom: 1rem;
-    }
-    .body-text strong { color: var(--cream); }
+      /* About section */
+      .about-section {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+      .section-eyebrow {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.68rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.75rem;
+      }
+      .section-heading {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        color: var(--white);
+        margin-bottom: 1.5rem;
+        line-height: 1.05;
+      }
+      .section-heading em {
+        color: var(--gold);
+        font-style: normal;
+      }
+      .body-text {
+        font-size: 1rem;
+        line-height: 1.85;
+        color: var(--grey-light);
+        max-width: 700px;
+        margin-bottom: 1rem;
+      }
+      .body-text strong {
+        color: var(--cream);
+      }
 
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin: 3rem 0;
-      max-width: 1280px;
-      padding: 0 2rem;
-    }
-    .divider::before, .divider::after {
-      content: ''; flex: 1; height: 1px;
-      background: var(--olive);
-    }
-    .divider-gem {
-      width: 10px; height: 10px;
-      background: var(--gold);
-      transform: rotate(45deg);
-    }
+      .divider {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 3rem 0;
+        max-width: 1280px;
+        padding: 0 2rem;
+      }
+      .divider::before,
+      .divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--olive);
+      }
+      .divider-gem {
+        width: 10px;
+        height: 10px;
+        background: var(--gold);
+        transform: rotate(45deg);
+      }
 
-    /* ══════════════════════════════
+      /* ══════════════════════════════
        PAGE HEADER (shared)
     ══════════════════════════════ */
-    .page-header {
-      background: var(--dark2);
-      border-bottom: 3px solid var(--olive-mid);
-      padding: 3.5rem 2rem 2.5rem;
-    }
-    .page-header-inner { max-width: 1280px; margin: 0 auto; }
-    .page-title {
-      font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      text-transform: uppercase;
-      color: var(--white);
-      line-height: 1;
-      margin-bottom: 1rem;
-    }
-    .page-title em { color: var(--gold); font-style: normal; }
-    .page-subtitle {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--grey-light);
-      max-width: 580px;
-    }
-    .page-body {
-      max-width: 1280px;
-      margin: 3rem auto;
-      padding: 0 2rem;
-    }
+      .page-header {
+        background: var(--dark2);
+        border-bottom: 3px solid var(--olive-mid);
+        padding: 3.5rem 2rem 2.5rem;
+      }
+      .page-header-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      .page-title {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        text-transform: uppercase;
+        color: var(--white);
+        line-height: 1;
+        margin-bottom: 1rem;
+      }
+      .page-title em {
+        color: var(--gold);
+        font-style: normal;
+      }
+      .page-subtitle {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--grey-light);
+        max-width: 580px;
+      }
+      .page-body {
+        max-width: 1280px;
+        margin: 3rem auto;
+        padding: 0 2rem;
+      }
 
-    /* ══════════════════════════════
+      /* ══════════════════════════════
        BLOG / SUBSTACK
     ══════════════════════════════ */
-    .substack-hero {
-      background: var(--dark2);
-      border: 1px solid var(--olive);
-      border-left: 5px solid var(--gold);
-      padding: 2.5rem 3rem;
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      margin-bottom: 3rem;
-    }
-    .substack-logo-circle {
-      width: 76px; height: 76px;
-      background: var(--gold);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .substack-logo-circle svg {
-      width: 40px; height: 40px;
-      fill: var(--dark);
-    }
-    .substack-info h3 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--white);
-      margin-bottom: 0.5rem;
-    }
-    .substack-info p {
-      font-size: 0.95rem;
-      line-height: 1.65;
-      color: var(--grey-light);
-      margin-bottom: 1.5rem;
-      max-width: 520px;
-    }
+      .substack-hero {
+        background: var(--dark2);
+        border: 1px solid var(--olive);
+        border-left: 5px solid var(--gold);
+        padding: 2.5rem 3rem;
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+        margin-bottom: 3rem;
+      }
+      .substack-logo-circle {
+        width: 76px;
+        height: 76px;
+        background: var(--gold);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .substack-logo-circle svg {
+        width: 40px;
+        height: 40px;
+        fill: var(--dark);
+      }
+      .substack-info h3 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--white);
+        margin-bottom: 0.5rem;
+      }
+      .substack-info p {
+        font-size: 0.95rem;
+        line-height: 1.65;
+        color: var(--grey-light);
+        margin-bottom: 1.5rem;
+        max-width: 520px;
+      }
 
-    .topics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
-      gap: 0.65rem;
-      margin-top: 1.5rem;
-    }
-    .topic-chip {
-      background: var(--dark2);
-      border: 1px solid var(--olive);
-      border-left: 3px solid var(--gold);
-      padding: 0.7rem 1rem;
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.76rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--cream);
-      transition: background 0.2s, border-left-color 0.2s;
-      cursor: default;
-    }
-    .topic-chip:hover {
-      background: rgba(201,165,53,0.07);
-      border-left-color: var(--gold-light);
-    }
+      .topics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+        gap: 0.65rem;
+        margin-top: 1.5rem;
+      }
+      .topic-chip {
+        background: var(--dark2);
+        border: 1px solid var(--olive);
+        border-left: 3px solid var(--gold);
+        padding: 0.7rem 1rem;
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.76rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--cream);
+        transition:
+          background 0.2s,
+          border-left-color 0.2s;
+        cursor: default;
+      }
+      .topic-chip:hover {
+        background: rgba(201, 165, 53, 0.07);
+        border-left-color: var(--gold-light);
+      }
 
-    /* ══════════════════════════════
+      /* ══════════════════════════════
        SOCIAL
     ══════════════════════════════ */
-    .social-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5px;
-      background: var(--olive-mid);
-      border: 1.5px solid var(--olive-mid);
-    }
-    .social-card {
-      background: var(--dark2);
-      padding: 2.5rem 2rem;
-      text-decoration: none;
-      display: block;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.2s;
-    }
-    .social-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--accent, var(--gold));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.25s;
-    }
-    .social-card:hover { background: #111108; }
-    .social-card:hover::after { transform: scaleX(1); }
+      .social-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5px;
+        background: var(--olive-mid);
+        border: 1.5px solid var(--olive-mid);
+      }
+      .social-card {
+        background: var(--dark2);
+        padding: 2.5rem 2rem;
+        text-decoration: none;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.2s;
+      }
+      .social-card::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--accent, var(--gold));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s;
+      }
+      .social-card:hover {
+        background: #111108;
+      }
+      .social-card:hover::after {
+        transform: scaleX(1);
+      }
 
-    .s-platform {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent, var(--gold));
-      margin-bottom: 1.5rem;
-    }
-    .s-icon-box {
-      width: 54px; height: 54px;
-      border: 2px solid var(--accent, var(--gold));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-    }
-    .s-icon-box svg {
-      width: 26px; height: 26px;
-      fill: var(--accent, var(--gold));
-    }
-    .s-handle {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.35rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--white);
-      margin-bottom: 0.4rem;
-    }
-    .s-desc {
-      font-size: 0.88rem;
-      line-height: 1.6;
-      color: var(--grey-light);
-    }
-    .s-arrow {
-      position: absolute;
-      top: 2rem; right: 2rem;
-      color: var(--grey);
-      font-size: 1.2rem;
-      transition: transform 0.2s, color 0.2s;
-    }
-    .social-card:hover .s-arrow {
-      transform: translate(3px, -3px);
-      color: var(--accent, var(--gold));
-    }
+      .s-platform {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--accent, var(--gold));
+        margin-bottom: 1.5rem;
+      }
+      .s-icon-box {
+        width: 54px;
+        height: 54px;
+        border: 2px solid var(--accent, var(--gold));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+      .s-icon-box svg {
+        width: 26px;
+        height: 26px;
+        fill: var(--accent, var(--gold));
+      }
+      .s-handle {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.35rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--white);
+        margin-bottom: 0.4rem;
+      }
+      .s-desc {
+        font-size: 0.88rem;
+        line-height: 1.6;
+        color: var(--grey-light);
+      }
+      .s-arrow {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        color: var(--grey);
+        font-size: 1.2rem;
+        transition:
+          transform 0.2s,
+          color 0.2s;
+      }
+      .social-card:hover .s-arrow {
+        transform: translate(3px, -3px);
+        color: var(--accent, var(--gold));
+      }
 
-    /* ══════════════════════════════
+      /* ══════════════════════════════
        RESOURCES
     ══════════════════════════════ */
-    .res-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 1.75rem;
-    }
-    .res-category {
-      background: var(--dark2);
-      border: 1px solid rgba(74,82,40,0.45);
-    }
-    .res-cat-head {
-      background: var(--olive);
-      border-bottom: 3px solid var(--gold);
-      padding: 1.1rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .res-cat-icon { width: 24px; height: 24px; fill: var(--gold); flex-shrink: 0; }
-    .res-cat-title {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--white);
-    }
-    .res-list { padding: 0.5rem 0; }
-    .res-item {
-      padding: 0.85rem 1.5rem;
-      border-bottom: 1px solid rgba(74,82,40,0.25);
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-    }
-    .res-item:last-child { border-bottom: none; }
-    .res-gem {
-      width: 7px; height: 7px;
-      background: var(--gold);
-      transform: rotate(45deg);
-      flex-shrink: 0;
-      margin-top: 0.45rem;
-    }
-    .res-name {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 0.93rem;
-      font-weight: 700;
-      color: var(--cream);
-      text-decoration: none;
-      display: block;
-      transition: color 0.2s;
-    }
-    a.res-name:hover { color: var(--gold); text-decoration: underline; }
-    .res-sub {
-      font-size: 0.78rem;
-      color: var(--grey);
-      font-style: italic;
-      margin-top: 0.15rem;
-      display: block;
-    }
+      .res-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 1.75rem;
+      }
+      .res-category {
+        background: var(--dark2);
+        border: 1px solid rgba(74, 82, 40, 0.45);
+      }
+      .res-cat-head {
+        background: var(--olive);
+        border-bottom: 3px solid var(--gold);
+        padding: 1.1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .res-cat-icon {
+        width: 24px;
+        height: 24px;
+        fill: var(--gold);
+        flex-shrink: 0;
+      }
+      .res-cat-title {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--white);
+      }
+      .res-list {
+        padding: 0.5rem 0;
+      }
+      .res-item {
+        padding: 0.85rem 1.5rem;
+        border-bottom: 1px solid rgba(74, 82, 40, 0.25);
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+      .res-item:last-child {
+        border-bottom: none;
+      }
+      .res-gem {
+        width: 7px;
+        height: 7px;
+        background: var(--gold);
+        transform: rotate(45deg);
+        flex-shrink: 0;
+        margin-top: 0.45rem;
+      }
+      .res-name {
+        font-family: 'Libre Baskerville', serif;
+        font-size: 0.93rem;
+        font-weight: 700;
+        color: var(--cream);
+        text-decoration: none;
+        display: block;
+        transition: color 0.2s;
+      }
+      a.res-name:hover {
+        color: var(--gold);
+        text-decoration: underline;
+      }
+      .res-sub {
+        font-size: 0.78rem;
+        color: var(--grey);
+        font-style: italic;
+        margin-top: 0.15rem;
+        display: block;
+      }
 
-    .res-note {
-      margin-top: 3rem;
-      padding: 1.5rem 2rem;
-      background: var(--olive);
-      border-left: 4px solid var(--gold);
-      font-size: 0.92rem;
-      line-height: 1.65;
-      color: var(--cream);
-      font-style: italic;
-    }
+      /* Currently Reading */
+      .currently-reading {
+        background: var(--dark2);
+        border: 1px solid var(--olive);
+        border-top: 4px solid var(--gold);
+        padding: 2rem 2.5rem;
+        margin-bottom: 3rem;
+        display: flex;
+        gap: 2.5rem;
+        align-items: flex-start;
+      }
+      .reading-badge {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .reading-badge-icon {
+        width: 56px;
+        height: 56px;
+        background: var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .reading-badge-icon svg {
+        width: 28px;
+        height: 28px;
+        fill: var(--dark);
+      }
+      .reading-badge-label {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.58rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--gold);
+        text-align: center;
+        white-space: nowrap;
+      }
+      .reading-content {
+        flex: 1;
+      }
+      .reading-eyebrow {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.5rem;
+      }
+      .reading-title {
+        font-family: 'Libre Baskerville', serif;
+        font-weight: 700;
+        font-size: 1.25rem;
+        color: var(--white);
+        margin-bottom: 0.25rem;
+      }
+      .reading-author {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        color: var(--grey-light);
+        font-style: italic;
+        margin-bottom: 0.85rem;
+      }
+      .reading-note {
+        font-size: 0.92rem;
+        line-height: 1.7;
+        color: var(--grey-light);
+      }
+      .reading-note strong {
+        color: var(--cream);
+      }
+      @media (max-width: 580px) {
+        .currently-reading {
+          flex-direction: column;
+          gap: 1.25rem;
+          padding: 1.5rem;
+        }
+      }
 
-    /* ══════════════════════════════
+      .res-note {
+        margin-top: 3rem;
+        padding: 1.5rem 2rem;
+        background: var(--olive);
+        border-left: 4px solid var(--gold);
+        font-size: 0.92rem;
+        line-height: 1.65;
+        color: var(--cream);
+        font-style: italic;
+      }
+
+      /* ══════════════════════════════
        FOOTER
     ══════════════════════════════ */
-    footer {
-      background: var(--dark2);
-      border-top: 3px solid var(--olive);
-      margin-top: 5rem;
-      padding: 2rem;
-    }
-    .footer-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .footer-brand {
-      font-family: 'Oswald', sans-serif;
-      font-size: 0.88rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--grey-light);
-    }
-    .footer-brand em { color: var(--gold); font-style: normal; }
-    .footer-copy {
-      font-size: 0.78rem;
-      color: var(--grey);
-    }
+      footer {
+        background: var(--dark2);
+        border-top: 3px solid var(--olive);
+        margin-top: 5rem;
+        padding: 2rem;
+      }
+      .footer-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .footer-brand {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.88rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--grey-light);
+      }
+      .footer-brand em {
+        color: var(--gold);
+        font-style: normal;
+      }
+      .footer-copy {
+        font-size: 0.78rem;
+        color: var(--grey);
+      }
 
-    /* ══════════════════════════════
+      /* ══════════════════════════════
        RESPONSIVE
     ══════════════════════════════ */
-    @media (max-width: 860px) {
-      nav { display: none; }
-      .hamburger { display: flex; }
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-photo { display: none; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
-      .substack-hero { flex-direction: column; gap: 1.5rem; padding: 2rem; }
-    }
-    @media (max-width: 520px) {
-      .stats-inner { grid-template-columns: 1fr 1fr; }
-      .res-grid { grid-template-columns: 1fr; }
-      .social-grid { grid-template-columns: 1fr; }
-    }
-  </style>
-</head>
-<body>
-
-<!-- ════════ HEADER ════════ -->
-<header>
-  <div class="header-inner">
-    <div class="logo" onclick="showPage('home')">
-      <div class="logo-chevrons">
-        <span></span><span></span><span></span>
+      @media (max-width: 860px) {
+        nav {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .hero-inner {
+          grid-template-columns: 1fr;
+        }
+        .hero-photo {
+          display: none;
+        }
+        .stats-inner {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .substack-hero {
+          flex-direction: column;
+          gap: 1.5rem;
+          padding: 2rem;
+        }
+      }
+      @media (max-width: 520px) {
+        .stats-inner {
+          grid-template-columns: 1fr 1fr;
+        }
+        .res-grid {
+          grid-template-columns: 1fr;
+        }
+        .social-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ════════ HEADER ════════ -->
+    <header>
+      <div class="header-inner">
+        <div class="logo" onclick="showPage('home')">
+          <div class="logo-chevrons">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="logo-text">Vet<em>On</em>The<em>Left</em></div>
+        </div>
+        <nav>
+          <button id="nav-home" onclick="showPage('home')" class="active">
+            Home
+          </button>
+          <button id="nav-blog" onclick="showPage('blog')">Blog</button>
+          <button id="nav-social" onclick="showPage('social')">Social</button>
+          <button id="nav-resources" onclick="showPage('resources')">
+            Resources
+          </button>
+        </nav>
+        <button
+          class="hamburger"
+          id="hamburger"
+          onclick="toggleMobile()"
+          aria-label="Menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <div class="logo-text">Vet<em>On</em>The<em>Left</em></div>
-    </div>
-    <nav>
-      <button id="nav-home"      onclick="showPage('home')"      class="active">Home</button>
-      <button id="nav-blog"      onclick="showPage('blog')">Blog</button>
-      <button id="nav-social"    onclick="showPage('social')">Social</button>
-      <button id="nav-resources" onclick="showPage('resources')">Resources</button>
-    </nav>
-    <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <div class="mobile-nav" id="mobileNav">
-    <button id="mnav-home"      onclick="showPage('home'); toggleMobile();"      class="active">Home</button>
-    <button id="mnav-blog"      onclick="showPage('blog'); toggleMobile();">Blog</button>
-    <button id="mnav-social"    onclick="showPage('social'); toggleMobile();">Social</button>
-    <button id="mnav-resources" onclick="showPage('resources'); toggleMobile();">Resources</button>
-  </div>
-</header>
+      <div class="mobile-nav" id="mobileNav">
+        <button
+          id="mnav-home"
+          onclick="
+            showPage('home');
+            toggleMobile();
+          "
+          class="active"
+        >
+          Home
+        </button>
+        <button
+          id="mnav-blog"
+          onclick="
+            showPage('blog');
+            toggleMobile();
+          "
+        >
+          Blog
+        </button>
+        <button
+          id="mnav-social"
+          onclick="
+            showPage('social');
+            toggleMobile();
+          "
+        >
+          Social
+        </button>
+        <button
+          id="mnav-resources"
+          onclick="
+            showPage('resources');
+            toggleMobile();
+          "
+        >
+          Resources
+        </button>
+      </div>
+    </header>
 
-<main>
-
-<!-- ════════════════════════════════════
+    <main>
+      <!-- ════════════════════════════════════
      HOME
 ════════════════════════════════════ -->
-<div class="page active" id="page-home">
+      <div class="page active" id="page-home">
+        <section class="hero">
+          <div class="hero-bg"></div>
+          <div class="hero-inner">
+            <div>
+              <p class="eyebrow">Veteran · Citizen · Voice</p>
+              <h1 class="hero-title">
+                <span class="t1">Vet</span>
+                <span class="t2">On The</span>
+                <span class="t3">Left</span>
+              </h1>
+              <p class="hero-bio">
+                <strong>I served this country in uniform.</strong> Now I serve
+                it with my voice. A veteran's perspective from the left side of
+                the aisle — on politics, policy, justice, and what it means to
+                fight for the ideals I thought this country had in my youth.
+              </p>
+              <div class="cta-row">
+                <a
+                  href="#"
+                  class="btn btn-gold"
+                  onclick="
+                    showPage('blog');
+                    return false;
+                  "
+                  >Read the Blog</a
+                >
+                <a
+                  href="#"
+                  class="btn btn-outline"
+                  onclick="
+                    showPage('resources');
+                    return false;
+                  "
+                  >Explore Resources</a
+                >
+              </div>
+            </div>
+            <div class="hero-photo">
+              <div class="photo-frame">
+                <!-- Replace the div below with: <img src="your-photo.jpg" alt="VetOnTheLeft" style="width:100%;height:100%;object-fit:cover;"> -->
+                <div class="photo-placeholder">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"
+                    />
+                  </svg>
+                  <p>Your photo here</p>
+                </div>
+              </div>
+              <div class="photo-nameplate">
+                <p>★ &nbsp; VetOnTheLeft &nbsp; ★</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-inner">
-      <div>
-        <p class="eyebrow">Veteran · Citizen · Voice</p>
-        <h1 class="hero-title">
-          <span class="t1">Vet</span>
-          <span class="t2">On The</span>
-          <span class="t3">Left</span>
-        </h1>
-        <p class="hero-bio">
-          <strong>I served this country in uniform.</strong> Now I serve it with my voice.
-          A veteran's perspective from the left side of the aisle — on politics, policy,
-          justice, and what it means to fight for a country worth fighting for.
-        </p>
-        <div class="cta-row">
-          <a href="#" class="btn btn-gold" onclick="showPage('blog'); return false;">Read the Blog</a>
-          <a href="#" class="btn btn-outline" onclick="showPage('resources'); return false;">Explore Resources</a>
-        </div>
-      </div>
-      <div class="hero-photo">
-        <div class="photo-frame">
-          <!-- Replace the div below with: <img src="your-photo.jpg" alt="VetOnTheLeft" style="width:100%;height:100%;object-fit:cover;"> -->
-          <div class="photo-placeholder">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-            </svg>
-            <p>Your photo here</p>
+        <div class="stats-bar">
+          <div class="stats-inner">
+            <div class="stat">
+              <div class="stat-val">US</div>
+              <div class="stat-lbl">Army Veteran</div>
+            </div>
+            <div class="stat">
+              <div class="stat-val">★★</div>
+              <div class="stat-lbl">Progressive Voice</div>
+            </div>
+            <div class="stat">
+              <div class="stat-val">100%</div>
+              <div class="stat-lbl">Ad-Free Content</div>
+            </div>
+            <div class="stat">
+              <div class="stat-val">Free</div>
+              <div class="stat-lbl">Substack Newsletter</div>
+            </div>
           </div>
         </div>
-        <div class="photo-nameplate">
-          <p>★ &nbsp; VetOnTheLeft &nbsp; ★</p>
+
+        <div class="about-section">
+          <p class="section-eyebrow">About</p>
+          <h2 class="section-heading">Who I <em>Am</em></h2>
+          <p class="body-text">
+            <!-- EDIT THIS: Replace with your own bio -->
+            [Add your extended bio here. Tell visitors about your military
+            service, what branch you served in, what years you served, what
+            drove you to speak out, and what they can expect from your content.]
+          </p>
+          <p class="body-text">
+            I write, post, and speak about the issues that matter — from
+            veterans' affairs and military policy to voting rights, healthcare,
+            and economic justice. I believe a well-informed citizenry is the
+            foundation of a healthy democracy, and I'm here to help build it.
+          </p>
         </div>
       </div>
-    </div>
-  </section>
+      <!-- /home -->
 
-  <div class="stats-bar">
-    <div class="stats-inner">
-      <div class="stat">
-        <div class="stat-val">US</div>
-        <div class="stat-lbl">Army Veteran</div>
-      </div>
-      <div class="stat">
-        <div class="stat-val">★★</div>
-        <div class="stat-lbl">Progressive Voice</div>
-      </div>
-      <div class="stat">
-        <div class="stat-val">100%</div>
-        <div class="stat-lbl">Ad-Free Content</div>
-      </div>
-      <div class="stat">
-        <div class="stat-val">Free</div>
-        <div class="stat-lbl">Substack Newsletter</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="about-section">
-    <p class="section-eyebrow">About</p>
-    <h2 class="section-heading">Who I <em>Am</em></h2>
-    <p class="body-text">
-      <!-- EDIT THIS: Replace with your own bio -->
-      [Add your extended bio here. Tell visitors about your military service, what branch you served in,
-      what years you served, what drove you to speak out, and what they can expect from your content.]
-    </p>
-    <p class="body-text">
-      I write, post, and speak about the issues that matter — from veterans' affairs and military policy
-      to voting rights, healthcare, and economic justice. I believe a well-informed citizenry is
-      the foundation of a healthy democracy, and I'm here to help build it.
-    </p>
-  </div>
-
-</div><!-- /home -->
-
-
-<!-- ════════════════════════════════════
+      <!-- ════════════════════════════════════
      BLOG
 ════════════════════════════════════ -->
-<div class="page" id="page-blog">
+      <div class="page" id="page-blog">
+        <div class="page-header">
+          <div class="page-header-inner">
+            <p class="eyebrow" style="margin-bottom: 0.75rem">
+              Writing & Commentary
+            </p>
+            <h2 class="page-title">The <em>Blog</em></h2>
+            <p class="page-subtitle">
+              Long-form takes, analysis, and commentary. Published on Substack —
+              subscribe to get every post delivered to your inbox, free.
+            </p>
+          </div>
+        </div>
 
-  <div class="page-header">
-    <div class="page-header-inner">
-      <p class="eyebrow" style="margin-bottom:0.75rem;">Writing & Commentary</p>
-      <h2 class="page-title">The <em>Blog</em></h2>
-      <p class="page-subtitle">Long-form takes, analysis, and commentary. Published on Substack — subscribe to get every post delivered to your inbox, free.</p>
-    </div>
-  </div>
+        <div class="page-body">
+          <div class="substack-hero">
+            <div class="substack-logo-circle">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"
+                />
+              </svg>
+            </div>
+            <div class="substack-info">
+              <h3>VetOnTheLeft on Substack</h3>
+              <p>
+                All my writing lives on Substack. Free to subscribe — no
+                algorithm, no ads, no noise. Just writing worth reading. Essays
+                go out whenever there's something worth saying.
+              </p>
+              <!-- UPDATE the href to your actual Substack URL -->
+              <a
+                href="https://substack.com/@vetontheft"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-gold"
+              >
+                Read on Substack →
+              </a>
+            </div>
+          </div>
 
-  <div class="page-body">
-    <div class="substack-hero">
-      <div class="substack-logo-circle">
-        <svg viewBox="0 0 24 24">
-          <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
-        </svg>
+          <div class="divider" style="padding: 0">
+            <div class="divider-gem"></div>
+          </div>
+
+          <p class="section-eyebrow" style="margin-bottom: 1rem">
+            Topics I Write About
+          </p>
+          <div class="topics-grid">
+            <div class="topic-chip">Healthcare Policy</div>
+            <div class="topic-chip">Economic Justice</div>
+            <div class="topic-chip">Civil Liberties</div>
+            <div class="topic-chip">Climate Policy</div>
+            <div class="topic-chip">Media Literacy</div>
+            <div class="topic-chip">Tech / AI Policy</div>
+            <div class="topic-chip">U.S. Government &amp; Domestic Policy</div>
+            <div class="topic-chip">U.S. Foreign Policy</div>
+          </div>
+        </div>
       </div>
-      <div class="substack-info">
-        <h3>VetOnTheLeft on Substack</h3>
-        <p>
-          All my writing lives on Substack. Free to subscribe — no algorithm, no ads,
-          no noise. Just writing worth reading. Essays go out whenever there's something
-          worth saying.
-        </p>
-        <!-- UPDATE the href to your actual Substack URL -->
-        <a href="https://substack.com/@vetontheft" target="_blank" rel="noopener" class="btn btn-gold">
-          Read on Substack →
-        </a>
-      </div>
-    </div>
+      <!-- /blog -->
 
-    <div class="divider" style="padding:0;"><div class="divider-gem"></div></div>
-
-    <p class="section-eyebrow" style="margin-bottom:1rem;">Topics I Write About</p>
-    <div class="topics-grid">
-      <div class="topic-chip">Healthcare Policy</div>
-      <div class="topic-chip">Economic Justice</div>
-      <div class="topic-chip">Civil Liberties</div>
-      <div class="topic-chip">Climate Policy</div>
-      <div class="topic-chip">Media Literacy</div>
-      <div class="topic-chip">Tech / AI Policy</div>
-      <div class="topic-chip">U.S. Government &amp; Domestic Policy</div>
-      <div class="topic-chip">U.S. Foreign Policy</div>
-    </div>
-  </div>
-
-</div><!-- /blog -->
-
-
-<!-- ════════════════════════════════════
+      <!-- ════════════════════════════════════
      SOCIAL
 ════════════════════════════════════ -->
-<div class="page" id="page-social">
-
-  <div class="page-header">
-    <div class="page-header-inner">
-      <p class="eyebrow" style="margin-bottom:0.75rem;">Find Me Online</p>
-      <h2 class="page-title">Social <em>Media</em></h2>
-      <p class="page-subtitle">Follow along on your platform of choice. I post regularly on all of these — pick the one that fits your life.</p>
-    </div>
-  </div>
-
-  <div class="page-body">
-    <div class="social-grid">
-
-      <!-- YouTube -->
-      <!-- UPDATE href to your actual YouTube URL -->
-      <a href="https://youtube.com/@VetOnTheLeft" target="_blank" rel="noopener"
-         class="social-card" style="--accent: #FF3B3B;">
-        <span class="s-arrow">↗</span>
-        <p class="s-platform">YouTube</p>
-        <div class="s-icon-box">
-          <svg viewBox="0 0 24 24">
-            <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
-          </svg>
+      <div class="page" id="page-social">
+        <div class="page-header">
+          <div class="page-header-inner">
+            <p class="eyebrow" style="margin-bottom: 0.75rem">Find Me Online</p>
+            <h2 class="page-title">Social <em>Media</em></h2>
+            <p class="page-subtitle">
+              Follow along on your platform of choice. I post regularly on all
+              of these — pick the one that fits your life.
+            </p>
+          </div>
         </div>
-        <p class="s-handle">@VetOnTheLeft</p>
-        <p class="s-desc">Video essays, commentary, and long-form discussions on the issues that actually matter.</p>
-      </a>
 
-      <!-- Instagram -->
-      <!-- UPDATE href to your actual Instagram URL -->
-      <a href="https://instagram.com/VetOnTheLeft" target="_blank" rel="noopener"
-         class="social-card" style="--accent: #E1306C;">
-        <span class="s-arrow">↗</span>
-        <p class="s-platform">Instagram</p>
-        <div class="s-icon-box">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-          </svg>
+        <div class="page-body">
+          <div class="social-grid">
+            <!-- YouTube -->
+            <!-- UPDATE href to your actual YouTube URL -->
+            <a
+              href="https://youtube.com/@VetOnTheLeft"
+              target="_blank"
+              rel="noopener"
+              class="social-card"
+              style="--accent: #ff3b3b"
+            >
+              <span class="s-arrow">↗</span>
+              <p class="s-platform">YouTube</p>
+              <div class="s-icon-box">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"
+                  />
+                </svg>
+              </div>
+              <p class="s-handle">@VetOnTheLeft</p>
+              <p class="s-desc">
+                Video essays, commentary, and long-form discussions on the
+                issues that actually matter.
+              </p>
+            </a>
+
+            <!-- Instagram -->
+            <!-- UPDATE href to your actual Instagram URL -->
+            <a
+              href="https://instagram.com/VetOnTheLeft"
+              target="_blank"
+              rel="noopener"
+              class="social-card"
+              style="--accent: #e1306c"
+            >
+              <span class="s-arrow">↗</span>
+              <p class="s-platform">Instagram</p>
+              <div class="s-icon-box">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"
+                  />
+                </svg>
+              </div>
+              <p class="s-handle">@VetOnTheLeft</p>
+              <p class="s-desc">
+                Quick takes, infographics, and community conversation.
+              </p>
+            </a>
+
+            <!-- Substack -->
+            <!-- UPDATE href to your actual Substack URL -->
+            <a
+              href="https://substack.com/@vetontheft"
+              target="_blank"
+              rel="noopener"
+              class="social-card"
+              style="--accent: #ff6719"
+            >
+              <span class="s-arrow">↗</span>
+              <p class="s-platform">Substack</p>
+              <div class="s-icon-box">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"
+                  />
+                </svg>
+              </div>
+              <p class="s-handle">VetOnTheLeft</p>
+              <p class="s-desc">
+                Free newsletter and long-form essays. Subscribe and never miss a
+                piece.
+              </p>
+            </a>
+
+            <!-- Threads -->
+            <!-- UPDATE href to your actual Threads URL -->
+            <a
+              href="https://www.threads.net/@VetOnTheLeft"
+              target="_blank"
+              rel="noopener"
+              class="social-card"
+              style="--accent: #b0b09a"
+            >
+              <span class="s-arrow">↗</span>
+              <p class="s-platform">Threads</p>
+              <div class="s-icon-box">
+                <svg viewBox="0 0 192 192" fill="currentColor">
+                  <path
+                    d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.229c8.249.053 14.474 2.452 18.503 7.129 2.932 3.405 4.893 8.111 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.14-23.82 1.371-39.134 15.264-38.105 34.568.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376C93.96 161.771 77.174 168 55.252 168c-24.56 0-43.222-8.044-55.461-23.908C-8.867 128.041-14 106.961-14 80.002c0-26.96 5.133-48.04 15.791-64.091 12.239-15.864 30.901-23.908 55.461-23.908h.34c24.559 0 42.873 8.067 54.474 23.976 5.677 7.735 9.97 17.345 12.793 28.604l16.44-4.391C137.847 24.13 132.37 12.454 124.67 3.48 110.222-13.066 88.455-21 60.005-21h-.34C30.158-21 6.61-11.996-9.047 5.76-23.234 21.785-30.504 44.825-30.504 80.002c0 35.177 7.27 58.217 21.457 74.242 15.657 17.756 39.205 26.76 69.052 26.76h.34c24.56 0 44.125-6.665 57.848-19.259C135.06 148.02 142 129.44 142 112c0-13.47-4.127-24.517-4.127-24.517"
+                  />
+                </svg>
+              </div>
+              <p class="s-handle">@VetOnTheLeft</p>
+              <p class="s-desc">
+                Real-time threads, hot takes, and public conversations.
+              </p>
+            </a>
+          </div>
         </div>
-        <p class="s-handle">@VetOnTheLeft</p>
-        <p class="s-desc">Quick takes, infographics, and community conversation.</p>
-      </a>
+      </div>
+      <!-- /social -->
 
-      <!-- Substack -->
-      <!-- UPDATE href to your actual Substack URL -->
-      <a href="https://substack.com/@vetontheft" target="_blank" rel="noopener"
-         class="social-card" style="--accent: #FF6719;">
-        <span class="s-arrow">↗</span>
-        <p class="s-platform">Substack</p>
-        <div class="s-icon-box">
-          <svg viewBox="0 0 24 24">
-            <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
-          </svg>
-        </div>
-        <p class="s-handle">VetOnTheLeft</p>
-        <p class="s-desc">Free newsletter and long-form essays. Subscribe and never miss a piece.</p>
-      </a>
-
-      <!-- Threads -->
-      <!-- UPDATE href to your actual Threads URL -->
-      <a href="https://www.threads.net/@VetOnTheLeft" target="_blank" rel="noopener"
-         class="social-card" style="--accent: #B0B09A;">
-        <span class="s-arrow">↗</span>
-        <p class="s-platform">Threads</p>
-        <div class="s-icon-box">
-          <svg viewBox="0 0 192 192" fill="currentColor">
-            <path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.229c8.249.053 14.474 2.452 18.503 7.129 2.932 3.405 4.893 8.111 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.14-23.82 1.371-39.134 15.264-38.105 34.568.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376C93.96 161.771 77.174 168 55.252 168c-24.56 0-43.222-8.044-55.461-23.908C-8.867 128.041-14 106.961-14 80.002c0-26.96 5.133-48.04 15.791-64.091 12.239-15.864 30.901-23.908 55.461-23.908h.34c24.559 0 42.873 8.067 54.474 23.976 5.677 7.735 9.97 17.345 12.793 28.604l16.44-4.391C137.847 24.13 132.37 12.454 124.67 3.48 110.222-13.066 88.455-21 60.005-21h-.34C30.158-21 6.61-11.996-9.047 5.76-23.234 21.785-30.504 44.825-30.504 80.002c0 35.177 7.27 58.217 21.457 74.242 15.657 17.756 39.205 26.76 69.052 26.76h.34c24.56 0 44.125-6.665 57.848-19.259C135.06 148.02 142 129.44 142 112c0-13.47-4.127-24.517-4.127-24.517"/>
-          </svg>
-        </div>
-        <p class="s-handle">@VetOnTheLeft</p>
-        <p class="s-desc">Real-time threads, hot takes, and public conversations.</p>
-      </a>
-
-    </div>
-  </div>
-
-</div><!-- /social -->
-
-
-<!-- ════════════════════════════════════
+      <!-- ════════════════════════════════════
      RESOURCES
 ════════════════════════════════════ -->
-<div class="page" id="page-resources">
-
-  <div class="page-header">
-    <div class="page-header-inner">
-      <p class="eyebrow" style="margin-bottom:0.75rem;">Educate Yourself</p>
-      <h2 class="page-title">Resource <em>Library</em></h2>
-      <p class="page-subtitle">Books, websites, research papers, blogs, and speeches worth your time. A living list — updated regularly.</p>
-    </div>
-  </div>
-
-  <div class="page-body">
-    <div class="res-grid">
-
-      <!-- Books -->
-      <div class="res-category">
-        <div class="res-cat-head">
-          <svg class="res-cat-icon" viewBox="0 0 24 24">
-            <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H7V9h10v2zm0-4H7V5h10v2z"/>
-          </svg>
-          <span class="res-cat-title">Books</span>
+      <div class="page" id="page-resources">
+        <div class="page-header">
+          <div class="page-header-inner">
+            <p class="eyebrow" style="margin-bottom: 0.75rem">
+              Educate Yourself
+            </p>
+            <h2 class="page-title">Resource <em>Library</em></h2>
+            <p class="page-subtitle">
+              Books, websites, research papers, blogs, and speeches worth your
+              time. A living list — updated regularly.
+            </p>
+          </div>
         </div>
-        <div class="res-list">
-          <!-- ADD YOUR BOOKS BELOW — copy a .res-item block to add more -->
-          <div class="res-item">
-            <div class="res-gem"></div>
-            <div>
-              <span class="res-name">Add a book recommendation here</span>
-              <span class="res-sub">Author Name</span>
+
+        <div class="page-body">
+          <!-- CURRENTLY READING — update title, author, and note whenever you start a new book -->
+          <div class="currently-reading">
+            <div class="reading-badge">
+              <div class="reading-badge-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H7V9h10v2zm0-4H7V5h10v2z"
+                  />
+                </svg>
+              </div>
+              <span class="reading-badge-label">Now<br />Reading</span>
+            </div>
+            <div class="reading-content">
+              <p class="reading-eyebrow">What I'm Reading Now</p>
+              <!-- UPDATE: Change the title, author, and note below whenever you start a new book -->
+              <p class="reading-title">Book Title Goes Here</p>
+              <p class="reading-author">Author Name</p>
+              <p class="reading-note">
+                Add a sentence or two about why you're reading it and what you
+                think so far.
+                <strong>This updates whenever you start something new.</strong>
+              </p>
             </div>
           </div>
-          <div class="res-item">
-            <div class="res-gem"></div>
-            <div>
-              <span class="res-name">Another great book title</span>
-              <span class="res-sub">Author Name</span>
+
+          <div class="res-grid">
+            <!-- Books -->
+            <div class="res-category">
+              <div class="res-cat-head">
+                <svg class="res-cat-icon" viewBox="0 0 24 24">
+                  <path
+                    d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H7V9h10v2zm0-4H7V5h10v2z"
+                  />
+                </svg>
+                <span class="res-cat-title">Books</span>
+              </div>
+              <div class="res-list">
+                <!-- ADD YOUR BOOKS BELOW — copy a .res-item block to add more -->
+                <div class="res-item">
+                  <div class="res-gem"></div>
+                  <div>
+                    <span class="res-name">Add a book recommendation here</span>
+                    <span class="res-sub">Author Name</span>
+                  </div>
+                </div>
+                <div class="res-item">
+                  <div class="res-gem"></div>
+                  <div>
+                    <span class="res-name">Another great book title</span>
+                    <span class="res-sub">Author Name</span>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <!-- Websites -->
+            <div class="res-category">
+              <div class="res-cat-head">
+                <svg class="res-cat-icon" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+                  />
+                </svg>
+                <span class="res-cat-title">Websites</span>
+              </div>
+              <div class="res-list">
+                <div class="res-item">
+                  <div class="res-gem"></div>
+                  <div>
+                    <a
+                      href="https://propublica.org"
+                      target="_blank"
+                      rel="noopener"
+                      class="res-name"
+                      >ProPublica</a
+                    >
+                    <span class="res-sub"
+                      >Independent investigative journalism</span
+                    >
+                  </div>
+                </div>
+                <div class="res-item">
+                  <div class="res-gem"></div>
+                  <div>
+                    <span class="res-name">Add your website picks here</span>
+                    <span class="res-sub">Short description</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Research & Data -->
+            <div class="res-category">
+              <div class="res-cat-head">
+                <svg class="res-cat-icon" viewBox="0 0 24 24">
+                  <path
+                    d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"
+                  />
+                </svg>
+                <span class="res-cat-title">Research & Data</span>
+              </div>
+              <div class="res-list">
+                <div class="res-item">
+                  <div class="res-gem"></div>
+                  <div>
+                    <a
+                      href="https://pewresearch.org"
+                      target="_blank"
+                      rel="noopener"
+                      class="res-name"
+                      >Pew Research Center</a
+                    >
+                    <span class="res-sub"
+                      >Nonpartisan data, surveys & polling</span
+                    >
+                  </div>
+                </div>
+                <div class="res-item">
+                  <div class="res-gem"></div>
+                  <div>
+                    <span class="res-name">Add your research sources</span>
+                    <span class="res-sub">Short description</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Blogs & Newsletters -->
+            <div class="res-category">
+              <div class="res-cat-head">
+                <svg class="res-cat-icon" viewBox="0 0 24 24">
+                  <path
+                    d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"
+                  />
+                </svg>
+                <span class="res-cat-title">Blogs & Newsletters</span>
+              </div>
+              <div class="res-list">
+                <div class="res-item">
+                  <div class="res-gem"></div>
+                  <div>
+                    <span class="res-name">Add newsletters you recommend</span>
+                    <span class="res-sub">Short description</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Speeches & Video -->
+            <div class="res-category">
+              <div class="res-cat-head">
+                <svg class="res-cat-icon" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+                <span class="res-cat-title">Speeches & Video</span>
+              </div>
+              <div class="res-list">
+                <div class="res-item">
+                  <div class="res-gem"></div>
+                  <div>
+                    <span class="res-name"
+                      >Add must-watch videos & speeches</span
+                    >
+                    <span class="res-sub">Speaker / Source</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Podcasts -->
+            <div class="res-category">
+              <div class="res-cat-head">
+                <svg class="res-cat-icon" viewBox="0 0 24 24">
+                  <path
+                    d="M12 3a9 9 0 0 0-9 9c0 4.97 4.03 9 9 9s9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm-1-6.42V8h2v4l3.5 2.08-.98 1.7L11 13.58z"
+                  />
+                </svg>
+                <span class="res-cat-title">Podcasts</span>
+              </div>
+              <div class="res-list">
+                <div class="res-item">
+                  <div class="res-gem"></div>
+                  <div>
+                    <span class="res-name"
+                      >Add your podcast recommendations</span
+                    >
+                    <span class="res-sub">Host / Network</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /res-grid -->
+
+          <div class="res-note">
+            ★ &nbsp; This list reflects resources I personally find valuable.
+            It's not exhaustive and I encourage you to think critically about
+            everything you read, watch, and hear — including me.
           </div>
         </div>
       </div>
+      <!-- /resources -->
+    </main>
 
-      <!-- Websites -->
-      <div class="res-category">
-        <div class="res-cat-head">
-          <svg class="res-cat-icon" viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-          </svg>
-          <span class="res-cat-title">Websites</span>
-        </div>
-        <div class="res-list">
-          <div class="res-item">
-            <div class="res-gem"></div>
-            <div>
-              <a href="https://propublica.org" target="_blank" rel="noopener" class="res-name">ProPublica</a>
-              <span class="res-sub">Independent investigative journalism</span>
-            </div>
-          </div>
-          <div class="res-item">
-            <div class="res-gem"></div>
-            <div>
-              <span class="res-name">Add your website picks here</span>
-              <span class="res-sub">Short description</span>
-            </div>
-          </div>
-        </div>
+    <!-- ════════ FOOTER ════════ -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">Vet<em>On</em>The<em>Left</em></div>
+        <div class="footer-copy">© 2025 VetOnTheLeft · All rights reserved</div>
       </div>
+    </footer>
 
-      <!-- Research & Data -->
-      <div class="res-category">
-        <div class="res-cat-head">
-          <svg class="res-cat-icon" viewBox="0 0 24 24">
-            <path d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
-          </svg>
-          <span class="res-cat-title">Research & Data</span>
-        </div>
-        <div class="res-list">
-          <div class="res-item">
-            <div class="res-gem"></div>
-            <div>
-              <a href="https://pewresearch.org" target="_blank" rel="noopener" class="res-name">Pew Research Center</a>
-              <span class="res-sub">Nonpartisan data, surveys & polling</span>
-            </div>
-          </div>
-          <div class="res-item">
-            <div class="res-gem"></div>
-            <div>
-              <span class="res-name">Add your research sources</span>
-              <span class="res-sub">Short description</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <script>
+      function showPage(id) {
+        document
+          .querySelectorAll('.page')
+          .forEach((p) => p.classList.remove('active'));
+        document
+          .querySelectorAll('nav button, .mobile-nav button')
+          .forEach((b) => b.classList.remove('active'));
+        document.getElementById('page-' + id).classList.add('active');
+        const btn = document.getElementById('nav-' + id);
+        const mbtn = document.getElementById('mnav-' + id);
+        if (btn) btn.classList.add('active');
+        if (mbtn) mbtn.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
 
-      <!-- Blogs & Newsletters -->
-      <div class="res-category">
-        <div class="res-cat-head">
-          <svg class="res-cat-icon" viewBox="0 0 24 24">
-            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
-          </svg>
-          <span class="res-cat-title">Blogs & Newsletters</span>
-        </div>
-        <div class="res-list">
-          <div class="res-item">
-            <div class="res-gem"></div>
-            <div>
-              <span class="res-name">Add newsletters you recommend</span>
-              <span class="res-sub">Short description</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Speeches & Video -->
-      <div class="res-category">
-        <div class="res-cat-head">
-          <svg class="res-cat-icon" viewBox="0 0 24 24">
-            <path d="M8 5v14l11-7z"/>
-          </svg>
-          <span class="res-cat-title">Speeches & Video</span>
-        </div>
-        <div class="res-list">
-          <div class="res-item">
-            <div class="res-gem"></div>
-            <div>
-              <span class="res-name">Add must-watch videos & speeches</span>
-              <span class="res-sub">Speaker / Source</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Podcasts -->
-      <div class="res-category">
-        <div class="res-cat-head">
-          <svg class="res-cat-icon" viewBox="0 0 24 24">
-            <path d="M12 3a9 9 0 0 0-9 9c0 4.97 4.03 9 9 9s9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm-1-6.42V8h2v4l3.5 2.08-.98 1.7L11 13.58z"/>
-          </svg>
-          <span class="res-cat-title">Podcasts</span>
-        </div>
-        <div class="res-list">
-          <div class="res-item">
-            <div class="res-gem"></div>
-            <div>
-              <span class="res-name">Add your podcast recommendations</span>
-              <span class="res-sub">Host / Network</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /res-grid -->
-
-    <div class="res-note">
-      ★ &nbsp; This list reflects resources I personally find valuable. It's not exhaustive and I encourage
-      you to think critically about everything you read, watch, and hear — including me.
-    </div>
-
-  </div>
-</div><!-- /resources -->
-
-</main>
-
-<!-- ════════ FOOTER ════════ -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">Vet<em>On</em>The<em>Left</em></div>
-    <div class="footer-copy">© 2025 VetOnTheLeft · All rights reserved</div>
-  </div>
-</footer>
-
-<script>
-  function showPage(id) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('nav button, .mobile-nav button').forEach(b => b.classList.remove('active'));
-    document.getElementById('page-' + id).classList.add('active');
-    const btn = document.getElementById('nav-' + id);
-    const mbtn = document.getElementById('mnav-' + id);
-    if (btn)  btn.classList.add('active');
-    if (mbtn) mbtn.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function toggleMobile() {
-    document.getElementById('mobileNav').classList.toggle('open');
-  }
-</script>
-
-</body>
+      function toggleMobile() {
+        document.getElementById('mobileNav').classList.toggle('open');
+      }
+    </script>
+  </body>
 </html>
