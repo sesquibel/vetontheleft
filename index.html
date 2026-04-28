@@ -962,6 +962,170 @@
       }
 
       /* ══════════════════════════════
+       PLATFORM / LEGISLATION
+    ══════════════════════════════ */
+      .platform-intro {
+        background: var(--dark2);
+        border-left: 5px solid var(--gold);
+        padding: 2rem 2.5rem;
+        margin-bottom: 3rem;
+        font-size: 1rem;
+        line-height: 1.8;
+        color: var(--grey-light);
+      }
+      .platform-intro strong {
+        color: var(--cream);
+      }
+
+      .bill {
+        background: var(--dark2);
+        border: 1px solid rgba(74, 82, 40, 0.5);
+        margin-bottom: 2.5rem;
+      }
+      .bill-header {
+        background: var(--olive);
+        border-bottom: 3px solid var(--gold);
+        padding: 1.5rem 2rem;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .bill-number {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.4rem;
+      }
+      .bill-title {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--white);
+        line-height: 1.1;
+      }
+      .bill-status {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.68rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        padding: 0.4rem 0.9rem;
+        border: 1px solid var(--gold);
+        color: var(--gold);
+        white-space: nowrap;
+        align-self: flex-start;
+        flex-shrink: 0;
+      }
+      .bill-body {
+        padding: 2rem;
+      }
+      .bill-section {
+        margin-bottom: 2rem;
+      }
+      .bill-section:last-child {
+        margin-bottom: 0;
+      }
+      .bill-section-label {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.68rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.6rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .bill-section-label::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--olive);
+      }
+      .bill-text {
+        font-size: 0.97rem;
+        line-height: 1.85;
+        color: var(--grey-light);
+      }
+      .bill-text strong {
+        color: var(--cream);
+      }
+      .bill-text em {
+        color: var(--gold-light);
+        font-style: italic;
+      }
+      .bill-provisions {
+        list-style: none;
+        margin-top: 0.75rem;
+      }
+      .bill-provisions li {
+        display: flex;
+        gap: 0.85rem;
+        align-items: flex-start;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid rgba(74, 82, 40, 0.3);
+      }
+      .bill-provisions li:last-child {
+        border-bottom: none;
+      }
+      .bill-provisions li::before {
+        content: '§';
+        color: var(--gold);
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        flex-shrink: 0;
+        margin-top: 0.15rem;
+      }
+      .bill-provisions li > div {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+      .bill-provisions li strong {
+        color: var(--cream);
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+      .bill-provisions li span {
+        color: var(--grey-light);
+        font-size: 0.93rem;
+        line-height: 1.7;
+      }
+      .bill-rationale {
+        background: rgba(74, 82, 40, 0.2);
+        border-left: 3px solid var(--olive-light);
+        padding: 1.25rem 1.5rem;
+        font-size: 0.92rem;
+        line-height: 1.75;
+        color: var(--grey-light);
+        font-style: italic;
+        margin-top: 1rem;
+      }
+      .bill-rationale strong {
+        color: var(--cream);
+        font-style: normal;
+      }
+      .bill-placeholder {
+        background: var(--dark2);
+        border: 2px dashed var(--olive);
+        padding: 2.5rem 2rem;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .bill-placeholder p {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.78rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--grey);
+      }
+
+      /* ══════════════════════════════
        RESPONSIVE
     ══════════════════════════════ */
       @media (max-width: 860px) {
@@ -1018,6 +1182,9 @@
           <button id="nav-resources" onclick="showPage('resources')">
             Resources
           </button>
+          <button id="nav-platform" onclick="showPage('platform')">
+            My Platform
+          </button>
         </nav>
         <button
           class="hamburger"
@@ -1065,6 +1232,15 @@
           "
         >
           Resources
+        </button>
+        <button
+          id="mnav-platform"
+          onclick="
+            showPage('platform');
+            toggleMobile();
+          "
+        >
+          My Platform
         </button>
       </div>
     </header>
@@ -1575,6 +1751,511 @@
         </div>
       </div>
       <!-- /resources -->
+
+      <!-- ════════════════════════════════════
+     PLATFORM / PROPOSED LEGISLATION
+════════════════════════════════════ -->
+      <div class="page" id="page-platform">
+        <div class="page-header">
+          <div class="page-header-inner">
+            <p class="eyebrow" style="margin-bottom: 0.75rem">
+              Policy · Accountability · Reform
+            </p>
+            <h2 class="page-title">My <em>Platform</em></h2>
+            <p class="page-subtitle">
+              Legislation I would propose if elected. These are real ideas,
+              grounded in law, built from the conviction that accountability and
+              justice aren't partisan — they're foundational.
+            </p>
+          </div>
+        </div>
+
+        <div class="page-body">
+          <div class="platform-intro">
+            <strong>A note on this page:</strong> These aren't talking points.
+            They're proposed legislation — with intent, legal rationale, and
+            specific provisions. I'm a veteran and a citizen, not yet an elected
+            official. But ideas have to start somewhere. If any of these
+            resonate with you, share them. Talk about them. Hold your
+            representatives accountable for having a position on them.
+          </div>
+
+          <!-- ── BILL 001 ── -->
+          <div class="bill">
+            <div class="bill-header">
+              <div>
+                <p class="bill-number">Proposed Legislation · VOTL-001</p>
+                <p class="bill-title">
+                  The Corporate Executive<br />Accountability Act
+                </p>
+              </div>
+              <div class="bill-status">Proposed</div>
+            </div>
+            <div class="bill-body">
+              <div class="bill-section">
+                <p class="bill-section-label">Purpose</p>
+                <p class="bill-text">
+                  To establish
+                  <strong
+                    >personal legal liability for corporate executives</strong
+                  >
+                  whose companies deploy products or services that cause
+                  documented harm to human beings — treating the executive as
+                  the corporeal decision-maker of the corporation rather than
+                  allowing the corporate structure to absorb consequences as an
+                  abstract entity.
+                </p>
+              </div>
+
+              <div class="bill-section">
+                <p class="bill-section-label">The Core Argument</p>
+                <p class="bill-text">
+                  In <em>Citizens United v. FEC</em> (2010), the Supreme Court
+                  affirmed that corporations possess constitutional rights
+                  equivalent to persons. This legislation applies that logic to
+                  its logical conclusion:
+                  <strong
+                    >if a corporation is a legal person with rights, its
+                    executive leadership must bear proportional accountability
+                    for the harm that person causes.</strong
+                  >
+                </p>
+                <p class="bill-text" style="margin-top: 0.85rem">
+                  A nurse making $75,000 a year can be held personally,
+                  professionally, and criminally liable for a single medication
+                  error — even one caused partly by systemic failures. A CEO
+                  making $20 million who signs off on deploying a product with
+                  documented internal evidence of harm faces, at worst,
+                  shareholder lawsuits paid by corporate insurance and a golden
+                  parachute on the way out.
+                  <strong>That asymmetry is indefensible.</strong>
+                </p>
+              </div>
+
+              <div class="bill-section">
+                <p class="bill-section-label">Key Provisions</p>
+                <ul class="bill-provisions">
+                  <li>
+                    <div>
+                      <strong>Personal Liability Standard</strong
+                      ><span
+                        >Chief executives of corporations with more than $1
+                        billion in annual revenue shall bear personal civil and
+                        criminal liability for harm caused by products or
+                        services their company knowingly deploys.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>"Knew or Should Have Known" Standard</strong
+                      ><span
+                        >Borrowed from medical and nursing law — a CEO cannot
+                        escape liability by claiming ignorance of information
+                        that was available within their organization. The
+                        standard is what a reasonable executive in their
+                        position, with their access, should have known.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Citizens United Reciprocity Clause</strong
+                      ><span
+                        >Any corporation that has invoked constitutional
+                        personhood protections in litigation or lobbying shall
+                        be subject to enhanced executive liability standards
+                        under this Act.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Negligence Per Se for Documented Harm</strong
+                      ><span
+                        >If internal company documents demonstrate that
+                        leadership was informed of harm to users and proceeded
+                        anyway, that constitutes negligence per se — liability
+                        is established without requiring proof of intent.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Golden Parachute Clawback</strong
+                      ><span
+                        >Executive separation packages may be clawed back in
+                        proportion to civil judgments arising from decisions
+                        made during their tenure.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Scope</strong
+                      ><span
+                        >Applies to technology platforms, pharmaceutical
+                        manufacturers, financial institutions, and any
+                        corporation whose product or service has resulted in
+                        documented loss of human life or serious bodily harm at
+                        scale.</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bill-section">
+                <p class="bill-section-label">Legal Precedent</p>
+                <p class="bill-text">
+                  Personal executive liability already exists in limited forms —
+                  CEOs can be prosecuted under the OSH Act for workplace safety
+                  violations, under securities law for fraud, and under
+                  environmental statutes for knowing violations.
+                  <strong
+                    >This legislation extends that existing framework to the
+                    consumer product and technology space</strong
+                  >, where the gap between executive decision-making and human
+                  harm is most stark and most unaddressed.
+                </p>
+                <div class="bill-rationale">
+                  <strong>On causation:</strong> The hardest legal challenge
+                  will be proving that a product caused harm rather than
+                  contributed to a pre-existing condition. This legislation
+                  addresses that by focusing liability on the
+                  <em>decision to deploy</em> a product with known risks, not
+                  solely on downstream outcomes — similar to how the auto
+                  industry was held liable for knowingly unsafe designs, not
+                  just for individual crashes.
+                </div>
+              </div>
+
+              <div class="bill-section">
+                <p class="bill-section-label">Why This Matters Now</p>
+                <p class="bill-text">
+                  AI systems are being deployed at scale with documented
+                  evidence of harm — to children, to vulnerable users, to
+                  democratic institutions. Social media platforms have internal
+                  research showing their products fuel depression, eating
+                  disorders, and radicalization.
+                  <strong
+                    >The people making those deployment decisions face no
+                    personal consequences.</strong
+                  >
+                  This legislation closes that gap — not by punishing
+                  innovation, but by ensuring that the humans who make decisions
+                  about deploying powerful systems into the world are held to
+                  the same standard of care we expect from every other
+                  professional whose decisions affect human life.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- /bill -->
+
+          <!-- ── BILL 002 ── -->
+          <div class="bill">
+            <div class="bill-header">
+              <div>
+                <p class="bill-number">Proposed Legislation · VOTL-002</p>
+                <p class="bill-title">
+                  The AI Data Center<br />Environmental Accountability Act
+                </p>
+              </div>
+              <div class="bill-status">Proposed</div>
+            </div>
+            <div class="bill-body">
+              <div class="bill-section">
+                <p class="bill-section-label">Purpose</p>
+                <p class="bill-text">
+                  To hold executives of companies operating AI data centers
+                  <strong>personally accountable</strong> for the environmental
+                  harm caused by those facilities — including water depletion,
+                  aquifer contamination, and unchecked energy consumption — and
+                  to establish enforceable cooling standards, mandatory
+                  environmental research requirements, and real consequences for
+                  non-compliance.
+                </p>
+              </div>
+
+              <div class="bill-section">
+                <p class="bill-section-label">The Core Argument</p>
+                <p class="bill-text">
+                  AI data centers consume roughly
+                  <strong
+                    >5–10 times more water than traditional server farms</strong
+                  >, and the gap is growing. U.S. data centers went from 21
+                  billion liters of water consumed in 2014 to 66 billion liters
+                  in 2023 — with projections suggesting that figure could double
+                  or quadruple by 2028. These facilities are being built in
+                  drought-stressed communities, drawing from the same aquifers
+                  that grow food and fill taps.
+                </p>
+                <p class="bill-text" style="margin-top: 0.85rem">
+                  Fewer than one-third of data center operators even track their
+                  water consumption — let alone disclose it. The technology
+                  industry has been allowed to consume these resources with
+                  almost no public accountability.
+                  <strong
+                    >You cannot eat a Google search. You cannot drink a ChatGPT
+                    response. When convenience competes with survival, survival
+                    wins.</strong
+                  >
+                </p>
+                <p class="bill-text" style="margin-top: 0.85rem">
+                  In <em>Citizens United v. FEC</em>, the Supreme Court affirmed
+                  that corporations possess constitutional rights equivalent to
+                  persons. This legislation applies that same logic:
+                  <strong
+                    >if a corporation is a legal person with rights, the human
+                    decision-maker of that legal person bears the accountability
+                    that personhood implies. Rights and accountability are not
+                    separable. You do not get one without the other.</strong
+                  >
+                </p>
+              </div>
+
+              <div class="bill-section">
+                <p class="bill-section-label">
+                  Executive Certification Requirements
+                </p>
+                <ul class="bill-provisions">
+                  <li>
+                    <div>
+                      <strong>Personal Certification</strong
+                      ><span
+                        >Executives must personally certify annual environmental
+                        compliance reports — signature authority cannot be
+                        delegated.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Written Acknowledgment</strong
+                      ><span
+                        >Executives must acknowledge in writing their awareness
+                        of all internal environmental impact assessments.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Non-Suppression Attestation</strong
+                      ><span
+                        >Executives must attest that no internal documentation
+                        establishing environmental risk has been suppressed,
+                        altered, or left unaddressed.</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bill-section">
+                <p class="bill-section-label">Key Provisions</p>
+                <ul class="bill-provisions">
+                  <li>
+                    <div>
+                      <strong>Certified Cooling Standards</strong
+                      ><span
+                        >All new AI data center construction must use certified
+                        cooling technology that meets minimum water-efficiency
+                        thresholds. Building without certified cooling triggers
+                        an immediate construction halt.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Refurbishment Timelines</strong
+                      ><span
+                        >Existing facilities must upgrade to compliant cooling
+                        systems on a federally mandated timeline. Failure to
+                        meet deadlines results in escalating surcharges and
+                        potential license suspension.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Independent Environmental Research</strong
+                      ><span
+                        >No facility may expand capacity without commissioning
+                        independent third-party research on projected
+                        environmental impact. Expansion without approved
+                        research results in permit denial.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Subsidy Compliance</strong
+                      ><span
+                        >Any facility receiving federal tax incentives or
+                        operating on federally managed land must meet full
+                        compliance standards — or face complete clawback of
+                        subsidies plus a 25% penalty.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Aquifer and Water Source Protections</strong
+                      ><span
+                        >Depletion or contamination of local water sources
+                        triggers both civil remediation requirements and — where
+                        prior knowledge is established — criminal liability for
+                        named executives.</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bill-section">
+                <p class="bill-section-label">Personal Liability Triggers</p>
+                <p class="bill-text">
+                  Personal criminal and civil liability attaches to named
+                  executives when:
+                </p>
+                <ul class="bill-provisions">
+                  <li>
+                    <div>
+                      <strong>Prior Knowledge</strong
+                      ><span
+                        >Internal documentation establishes prior knowledge of
+                        environmental harm and operations continued
+                        regardless.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>False Certification</strong
+                      ><span
+                        >Environmental compliance certifications are found to be
+                        materially false.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Foreseeable Harm</strong
+                      ><span
+                        >Aquifer depletion or contamination is found to have
+                        been foreseeable based on data available at the time of
+                        the executive's decision.</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bill-section">
+                <p class="bill-section-label">Penalties</p>
+                <ul class="bill-provisions">
+                  <li>
+                    <div>
+                      <strong>Building Without Certified Cooling</strong
+                      ><span
+                        >Construction halt + $10 million per day fine until
+                        compliance is achieved.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Failing Refurbishment Timeline</strong
+                      ><span
+                        >Escalating daily surcharges + facility operating
+                        license suspension.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Expanding Without Independent Research</strong
+                      ><span
+                        >Expansion permit denial and reversal of any work
+                        already completed.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Aquifer Depletion — Civil</strong
+                      ><span
+                        >Full remediation cost borne by the corporation + direct
+                        compensation to affected residents and agricultural
+                        users.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Aquifer Depletion — Criminal (Knowing)</strong
+                      ><span
+                        >Up to 10 years federal imprisonment and personal
+                        financial liability for named executives.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>False Environmental Certification</strong
+                      ><span
+                        >Federal criminal fraud charges and permanent bar from
+                        serving in executive roles at any publicly traded
+                        company.</span
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Subsidy Non-Compliance</strong
+                      ><span
+                        >Full clawback of all federal subsidies received + 25%
+                        penalty surcharge.</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bill-section">
+                <p class="bill-section-label">A Note on Idealism</p>
+                <p class="bill-text">
+                  This legislation is deliberately ambitious. It takes seriously
+                  the idea that
+                  <strong>water is more important than data</strong>, that human
+                  life outweighs quarterly earnings, and that the executives of
+                  the most profitable companies in human history can afford to
+                  be held to the same standard of care we demand from every
+                  other professional whose decisions affect human life.
+                </p>
+                <div class="bill-rationale">
+                  The gap between what is politically possible today and what
+                  this proposes is not an argument against the proposal.
+                  <strong
+                    >It is an argument about where the conversation needs to
+                    go.</strong
+                  >
+                  This is a citizen-drafted policy framework — a starting point,
+                  not a finished document.
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /bill 002 -->
+
+          <!-- Placeholder for future bills -->
+          <div class="bill-placeholder">
+            <p>· More Proposed Legislation Coming ·</p>
+          </div>
+        </div>
+      </div>
+      <!-- /platform -->
     </main>
 
     <!-- ════════ FOOTER ════════ -->
